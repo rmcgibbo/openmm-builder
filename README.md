@@ -28,4 +28,4 @@ Just run
 sudo python setup.py install
 ```
 
-Now the script `openmm-builder` will be installed in your path!
+Now the script `openmm-builder` will be installed in your PATH!
