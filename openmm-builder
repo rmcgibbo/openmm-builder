@@ -31,7 +31,7 @@ from traits.api import (HasTraits, Int, Enum, Float, Instance, Regex,
                         Button, Unicode, Bool, Code, File, Any)
 from traitsui.api import (View, Item, Group, Handler,  VGroup, HGroup,
                           HSplit, spring)
-from enthought.pyface.api import FileDialog, OK
+from pyface.api import FileDialog, OK
 # 3rd party
 import pystache
 
@@ -94,16 +94,12 @@ class UnittedFloat(Any):
         self.unit = default.unit
 
     def validate(self, object, name, value):
-        #super(UnittedFloat, self).validate(object, name, value)
-
         parsed_val = self._parse(object, name, value)
-
         try:
             if not parsed_val.unit.is_compatible(self.unit):
                 self.error(object, name, value)
         except Exception as e:
-            self.error(object, name, value)
-            
+            self.error(object, name, value)            
         return parsed_val
         
     def _parse(self, object, name, value):
@@ -179,26 +175,19 @@ class Integrator(HasTraits):
     friction = UnittedFloat(91.0/simtk.unit.picosecond)
 
     #-- Trait View Definitions ----------------------------------
-    main_group = Group(
-        Item(name='kind'),
-        Item(name='timestep'),
-        show_border=True
-    )
+    main_group = Group('kind', 'timestep',
+        show_border=True,)
 
-    stochastic_group = Group(
-        Item(name='friction'),
-        Item(name='temperature'),
+    stochastic_group = Group('friction', 'temperature',
         label='Addition info for stochastic integrators',
         show_border=True,
-        visible_when='stochastic_active')
+        visible_when='stochastic_active',)
 
     view = View(
-        Group(main_group,
-        stochastic_group,
+        Group(main_group, stochastic_group,
         label='Integrator Options',
         show_border=True),
-        resizable=True,
-    )
+        resizable=True,)
 
 
 class System(HasTraits):
@@ -241,8 +230,7 @@ class Reporters(HasTraits):
         show_border=True,
         label='StateDataReporter Options',
         visible_when='statedata_active')
-    view = View(
-                Group(main_group, dcd_group, statedata_group,
+    view = View(Group(main_group, dcd_group, statedata_group,
                       show_border=True,
                       label='Reporters',
                 ), resizable=True)
@@ -334,28 +322,27 @@ class App(HasTraits):
         HSplit(
             Group(
                 Group(
-                    Group(
-                        Item('inputfile',  show_label=False),
-                        Item('forcefield', show_label=False),
-                        label='Input'
-                    ),
+                    # pane 1
+                    Group(Item('inputfile', show_label=False),
+                          Item('forcefield', show_label=False),
+                          label='Input'),
+                    # pane 2
                     Item('integrator', show_label=False, label='Integ.'),
-                    Item('system',     show_label=False),
-                    Group(
-                        Item('simulation', show_label=False),
-                        Item('reporters', show_label=False),
-                        label='Simulation'
-                    ),
-                    layout='tabbed',
-                ),
-                HGroup(spring, Item('save', show_label=False), spring)
-            ),
-            Item('display', show_label=False, width=0.7),
-        ),
+                    # pane 3
+                    Item('system', show_label=False),
+                    # pane 4
+                    Group(Item('simulation', show_label=False),
+                          Item('reporters', show_label=False),
+                          label='Simulation'),
+                    layout='tabbed',),
+                # put some springs around the save button, so it goes
+                # in the middle of the column
+                HGroup(spring, Item('save', show_label=False), spring)),
+            # and now this goes over on the right
+            Item('display', show_label=False, width=0.7),),
         style='custom',
         title='OpenMM Script Builder',
-        resizable=True
-    )
+        resizable=True)
 
     def update_display(self):
         contents = self.renderer.render(self.template, self)
