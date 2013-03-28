@@ -346,7 +346,12 @@ class App(HasTraits):
 
     def update_display(self):
         contents = self.renderer.render(self.template, self)
-        self.display = '\n'.join([line[4:] for line in contents.split('\n')[1:]])
+        # cheat a little bit to fix the formatting in the template string...
+        # it has four extra spaces in front of every line from being declared
+        # above, and the first line is empty. This makes it look better in
+        # the code above, but isn't how we want it displayed. so lets chop
+        # that stuff off.
+        self.display = os.linesep.join([line[4:] for line in contents.split(os.linesep)[1:]])
 
 if __name__ == '__main__':
     import signal
