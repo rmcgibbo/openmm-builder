@@ -5,6 +5,9 @@ A graphical interface for building OpenMM scripts. As you edit the fields in the
 update itself in real time.
 
 ![image](https://raw.github.com/rmcgibbo/openmm-builder/master/screenshot.png)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=sKvtPRsNOPQ
+" target="_blank"><img src="https://raw.github.com/rmcgibbo/openmm-builder/master/screenshot.png" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 Dependencies
 ------------
