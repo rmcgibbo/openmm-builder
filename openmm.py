@@ -75,9 +75,9 @@ class System(HasTraits):
     #-- Trait Definitions ----------------------------------
     nonbonded_method = Enum('PME', ['NoCutoff', 'CutoffNonPeriodic',
                                     'CutoffPeriodic', 'Ewald', 'PME'])
-    nonbonded_cutoff = Float
+    nonbonded_cutoff = Float(10)
     constraints = Enum('None', ['None', 'HBonds', 'HAngles', 'AllBonds'])
-    rigid_water = Bool(False)
+    rigid_water = Bool(True)
 
     #-- Trait View Definitions ----------------------------------
     main_group = Group('nonbonded_method', 'constraints', 'rigid_water')
@@ -108,6 +108,7 @@ class App(HasTraits):
             Item('display', show_label=False)
         ),
         style='custom',
+        title='OpenMM Script Builder',
         resizable=True
     )
     
