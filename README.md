@@ -4,6 +4,9 @@ openmm-builder
 A graphical interface for building OpenMM scripts. As you edit the fields in the GUI, the script will
 update itself in real time.
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=sKvtPRsNOPQ
+" target="_blank"><img src="http://img.youtube.com/vi/sKvtPRsNOPQ/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 [![ScreenShot](https://raw.github.com/rmcgibbo/openmm-builder/master/screenshot.png)](http://www.youte.be/sKvtPRsNOPQ)
 
 Dependencies
