@@ -10,8 +10,8 @@ Dependencies
 ------------
 openmm-builder is a GUI app. Currently, it runs using the Qt graphics toolkit, although that should be
 flexible. If you don't know what any of this this means, and are using a vendor-provided python
-distribution, YOUR SYSTEM PYTHON MIGHT NOT BE LINKED AGAINST A GRAPHICS TOOLKIT. So, we HIGHLY
-RECOMMEND that you download a "full featured" python distribution like EPD Free, which you can get
+distribution, YOUR SYSTEM PYTHON MIGHT NOT BE LINKED AGAINST A GRAPHICS TOOLKIT. So, **we HIGHLY
+RECOMMEND that you download a "full featured" python distribution like EPD Free**, which you can get
 here: http://www.enthought.com/products/epd_free.php
 
 openmm-builder depends on enthought's [traits](https://pypi.python.org/pypi/traits) and
