@@ -9,8 +9,8 @@ update itself in real time.
 Installation
 ------------
 openmm-builder depends on enthought's [traits](https://pypi.python.org/pypi/traits) and
-[traitsui](https://pypi.python.org/pypi/traitsui). I am also, for simplicity, using
-[mustache](http://mustache.github.com/) to generate the script.
+[traitsui](https://pypi.python.org/pypi/traitsui) on top of the Qt graphics toolkit.
+I am also, for simplicity, using [mustache](http://mustache.github.com/) to generate the script.
 
 To install this stuff with `easy_install`, just do:
 
