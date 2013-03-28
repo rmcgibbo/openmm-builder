@@ -16,12 +16,8 @@ here: http://www.enthought.com/products/epd_free.php
 
 openmm-builder depends on enthought's [traits](https://pypi.python.org/pypi/traits) and
 [traitsui](https://pypi.python.org/pypi/traitsui). Obviously if you're using the EPD python
-distribution (recommended), you will already have these packages. If not, you can install them
-with
-
-```
-$ sudo easy_install traits traitsui
-```
+distribution (recommended), you will already have these packages. Otherwise, you can install them
+with `$ sudo easy_install traits traitsui`
  
 We are also, for simplicity, using [mustache](http://mustache.github.com/) to generate the script. To
 install this package into your python distribution with `easy_install`, just run:
