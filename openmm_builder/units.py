@@ -53,7 +53,7 @@ class UnittedFloat(Any):
         try:
             if not parsed_val.unit.is_compatible(self.unit):
                 self.error(object, name, value)
-        except Exception as e:
+        except Exception:
             self.error(object, name, value)
         return parsed_val
 
@@ -61,7 +61,7 @@ class UnittedFloat(Any):
         try:
             # either just eval it
             v = eval(value, simtk.unit.__dict__)
-        except Exception as e:
+        except Exception :
             try:
                 # or try splitting it into two components, and multiplying
                 # them. This enables something like "2.0 femtoseconds"

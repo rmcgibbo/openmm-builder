@@ -52,7 +52,7 @@ def queue_reporter_factory(queue):
 
         def report(self, simulation, state):
             was_initialized = self._hasInitialized
-            
+
             # spoof the file-like object with a string buffer
             self._out = StringIO.StringIO()
             super(QueueStateDataReporter, self).report(simulation, state)
@@ -83,28 +83,28 @@ def run_openmm_script(code, queue):
     """Run an OpenMM script, dynamiclly redefining a StateDataReporter
     to capture the output, sending it into this queue
     """
-    
+
     def fix_code():
-        """Replae the token 'StateDataReporter' with 
+        """Replae the token 'StateDataReporter' with
         '__queue_reporter_factory(__queue)'
-        
+
         Also, we make sure that the sentenel signal (None) is sent
         down the queue at the very end of the script
         """
-        itoks = tokenize.generate_tokens(StringIO.StringIO(code).readline)       
+        itoks = tokenize.generate_tokens(StringIO.StringIO(code).readline)
         def run():
             for toktype, toktext, (srow, scol), (erow, ecol), line in itoks:
                 if toktext == 'StateDataReporter':
                     toktext = '__queue_reporter_factory(__queue)'
                 yield (toktype, toktext, (srow, scol), (erow, ecol), line)
-    
+
         return tokenize.untokenize(run()) + '__queue.put(None)'
-    
+
     try:
-        code = fix_code() 
+        code = fix_code()
     except tokenize.TokenError:
         raise ValueError('The script has a syntax error!')
-    
+
     exec code in globals(), {'__queue': queue,
                 '__queue_reporter_factory': queue_reporter_factory}
 
@@ -138,7 +138,7 @@ class OpenMMScriptRunner(HasTraits):
     plots_created = Bool
     openmm_script_code = String
     status = String
-    
+
     traits_view = View(
         Group(
             HGroup(spring, Item('status', style='readonly'), spring),
@@ -169,9 +169,9 @@ class OpenMMScriptRunner(HasTraits):
     def queue_consumer(self, q):
         """Main loop for a thread that consumes the messages from the queue
         and plots them"""
-        
+
         self.status = 'Running...'
-        
+
         while True:
             try:
                 msg = q.get_nowait()
@@ -180,12 +180,12 @@ class OpenMMScriptRunner(HasTraits):
                 self.update_plot(msg)
             except Queue.Empty:
                 time.sleep(0.1)
-                
+
         self.status = 'Done'
 
     def create_plots(self, keys):
         """Create the plots
-        
+
         Paramters
         ---------
         keys : list of strings
@@ -194,7 +194,7 @@ class OpenMMScriptRunner(HasTraits):
             ArrayPlotData container in which each of these timeseries will
             get put.
         """
-        
+
         self.plots = VPlotContainer(resizable = "hv", bgcolor="lightgray",
                                fill_padding=True, padding = 10)
         # this looks cryptic, but it is equivalent to
@@ -220,7 +220,7 @@ class OpenMMScriptRunner(HasTraits):
 
     def update_plot(self, msg):
         """Add data points from the message to the plots
-        
+
         Paramters
         ---------
         msg : dict
