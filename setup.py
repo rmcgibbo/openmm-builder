@@ -22,8 +22,9 @@ if sys.argv[1] in ['install', 'develop']:
             print('#'*75)
         
 
-setup(name='openmm-qtbuilder',
+setup(name='openmm-builder',
       version='0.1',
       author='Robert McGibbon',
       license='GPLv3',
-      scripts=['openmm-builder'])
+      packages=['openmm_builder'],
+      scripts=['scripts/openmm-builder'])
