@@ -14,13 +14,15 @@ distribution, YOUR SYSTEM PYTHON MIGHT NOT BE LINKED AGAINST A GRAPHICS TOOLKIT.
 RECOMMEND that you download a "full featured" python distribution like EPD Free**, which you can get
 here: http://www.enthought.com/products/epd_free.php
 
-openmm-builder depends on enthought's [traits](https://pypi.python.org/pypi/traits) and
-[traitsui](https://pypi.python.org/pypi/traitsui). Obviously if you're using the EPD python
-distribution (recommended), you will already have these packages. Otherwise, you can install them
-with `$ sudo easy_install traits traitsui`
+openmm-builder depends on enthought's [traits](https://pypi.python.org/pypi/traits),
+[traitsui](https://pypi.python.org/pypi/traitsui) and [chaco](https://pypi.python.org/pypi/chaco).
+Obviously if you're using the Enthought EPD python distribution (recommended),
+you will already have these packages. Otherwise, you can install them with
+`$ sudo easy_install traits traitsui chaco`
  
-We are also, for simplicity, using [mustache](http://mustache.github.com/) to generate the script. To
-install this package into your python distribution with `easy_install`, just run:
+We are also, for simplicity, using [mustache](http://mustache.github.com/) to
+generate the script. To install this package into your python distribution with
+`easy_install`, just run:
 
 ```
 $ sudo easy_install pystache
