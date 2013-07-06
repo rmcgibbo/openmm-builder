@@ -1,6 +1,9 @@
 openmm-builder
 ==============
 
+NOTE: THE WEB VERSION IS BETTER. AVAILABLE AT BUILDER.OPENMM.ORG
+================================================================
+
 A graphical interface for building OpenMM scripts. As you edit the fields in the GUI, the script will
 update itself in real time.
 
